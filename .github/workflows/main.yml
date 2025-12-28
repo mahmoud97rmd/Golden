@@ -19,10 +19,9 @@ jobs:
 
       # Set up Flutter
       - name: Set up Flutter
-        uses: subosito/flutter-action@v3
+        uses: volkanersoy/flutter-action@v2
         with:
           flutter-version: '3.16.0'
-          channel: 'stable'
 
       # Install dependencies
       - name: Install dependencies
@@ -32,9 +31,9 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      # Upload the APK as an artifact (updated to the correct action version)
+      # Upload the APK as an artifact
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: gold_trading_simulator_apk
           path: build/app/outputs/flutter-apk/app-release.apk
