@@ -15,11 +15,11 @@ jobs:
     steps:
       # Checkout the repository code
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       # Set up Flutter
       - name: Set up Flutter
-        uses: subosito/flutter-action@v4
+        uses: subosito/flutter-action@v3
         with:
           flutter-version: '3.16.0'
           channel: 'stable'
@@ -32,9 +32,9 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      # Upload the APK as an artifact
+      # Upload the APK as an artifact (updated to the correct action version)
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: gold_trading_simulator_apk
           path: build/app/outputs/flutter-apk/app-release.apk
