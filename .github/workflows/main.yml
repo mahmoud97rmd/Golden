@@ -1,0 +1,40 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.0'
+          channel: 'stable'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Build APK
+      - name: Build APK
+        run: flutter build apk --release
+
+      # Upload the APK as an artifact
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: gold_trading_simulator_apk
+          path: build/app/outputs/flutter-apk/app-release.apk
